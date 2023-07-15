@@ -2,7 +2,7 @@ const productModel = require("../models/products.model");
 const catchAsync = require("../utils/catchAsync");
 // get products by user Id
 exports.getAllproductByUserId = catchAsync(async (req, res, next) => {
-  const products = await productModel.find({ userId: req.body.userId });
+  const products = await productModel.find({ userId: req.params.userId });
 
   return res.status(200).json({
     status: "success",

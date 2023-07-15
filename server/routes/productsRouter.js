@@ -3,7 +3,7 @@ const productsController = require("../controllers/productController");
 
 const Router = express.Router();
 
-Router.get("/", productsController.getAllproductByUserId);
+Router.get("/:userId", productsController.getAllproductByUserId);
 Router.post("/", productsController.postProductByUserId);
 Router.delete("/:productId", productsController.deleteProductById);
 Router.patch("/:productId", productsController.patchProductById);
