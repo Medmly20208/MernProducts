@@ -6,14 +6,14 @@ import { Routes, Route } from "react-router-dom";
 
 //components
 import Login from "./pages/Login";
-import Signup from "./pages/signup";
-import Products from "./pages/products";
+import Signup from "./pages/Signup";
+import Products from "./pages/Products";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route element={<Login></Login>} path="/login"></Route>
+        <Route index element={<Login></Login>} path="/login"></Route>
         <Route element={<Signup />} path="/signup"></Route>
         <Route element={<Products />} path="/products"></Route>
       </Routes>

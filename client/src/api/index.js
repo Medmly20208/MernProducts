@@ -13,7 +13,7 @@ export const signup = (data) => {
 };
 
 export const getProductsByUserId = (data) => {
-  return Client.get(`/products/${data.userId}`, data);
+  return Client.get(`/products/${data.userId}`);
 };
 
 export const postProduct = (data) => {
@@ -25,5 +25,5 @@ export const updateProductById = (data) => {
 };
 
 export const deleteProductById = (data) => {
-  return Client.delete(`/products/${data.productId}`, data);
+  return Client.delete(`/products/${data.productId}`);
 };

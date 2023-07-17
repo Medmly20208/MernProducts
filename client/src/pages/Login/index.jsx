@@ -4,7 +4,10 @@ import React, { useState } from "react";
 import { login } from "../../api/index";
 
 //router
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
+//css
+import styles from "./Login.module.css";
 
 const index = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +21,7 @@ const index = () => {
     setError(null);
     login({ email, password })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         navigate("/products");
       })
@@ -28,25 +31,34 @@ const index = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        {error && <p>{error}</p>}
-        <div>
-          <label>Email</label>
-          <br></br>
-          <input type="text" onChange={(e) => setEmail(e.target.value)}></input>
+    <div className={styles["container"]}>
+      <div className={styles["sub_container"]}>
+        <h2>Login</h2>
+        <form onSubmit={handleLogin} className={styles["form_container"]}>
+          {error && <p className="error">*{error}</p>}
+          <div>
+            <label>Email:</label>
+            <br></br>
+            <input
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <label>Password:</label>
+            <br></br>
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
+          </div>
+          <button>Connect</button>
+        </form>
+        <div className={styles["link"]}>
+          <p>Don't have account?</p>
+          <Link to="/signup">Register</Link>
         </div>
-        <div>
-          <label>Password</label>
-          <br></br>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-        </div>
-        <button>Connect</button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container input {
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid black;
+  margin-left: 10px;
+}
+
+.container td {
+  width: 150px;
+}
+
+.sub_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+  margin-bottom: 20px;
+}
