@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 
 //components
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Signup from "./pages/signup";
 import Products from "./pages/Products";
 
 function App() {
