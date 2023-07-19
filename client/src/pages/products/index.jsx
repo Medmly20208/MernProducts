@@ -15,7 +15,7 @@ import styles from "./Products.module.css";
 import { useNavigate } from "react-router-dom";
 
 const index = () => {
-  const [loading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
   const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
@@ -43,6 +43,7 @@ const index = () => {
       name: searchProduct,
     })
       .then((res) => {
+        setIsLoading(false);
         setProducts(res.data.data);
       })
       .catch((err) => {
@@ -103,7 +104,7 @@ const index = () => {
               </thead>
 
               <tbody>
-                {products.length === 0 && (
+                {!isLoading && products.length === 0 && (
                   <tr>
                     <td>No products</td>
                   </tr>

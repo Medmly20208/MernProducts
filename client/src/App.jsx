@@ -13,6 +13,7 @@ function App() {
   return (
     <>
       <Routes>
+        <Route index element={<Login></Login>}></Route>
         <Route index element={<Login></Login>} path="/login"></Route>
         <Route element={<Signup />} path="/signup"></Route>
         <Route element={<Products />} path="/products"></Route>
