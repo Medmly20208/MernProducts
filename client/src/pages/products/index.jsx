@@ -21,6 +21,7 @@ const index = () => {
   const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [dataChanged, setDataChanged] = useState(false);
+  const [searchProduct, setSearchProduct] = useState("");
 
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ const index = () => {
     setIsLoading(true);
     getProductsByUserId({
       userId: JSON.parse(localStorage.getItem("userData")).id,
+      name: searchProduct,
     })
       .then((res) => {
         setProducts(res.data.data);
@@ -47,7 +49,7 @@ const index = () => {
         //console.log(err);
       });
     setIsLoading(false);
-  }, [dataChanged]);
+  }, [dataChanged, searchProduct]);
 
   const deleteProduct = (id) => {
     deleteProductById({ productId: id })
@@ -83,7 +85,11 @@ const index = () => {
             <button className="btn" onClick={openAddModal}>
               Add product
             </button>
-            <input type="text" placeholder="search by name"></input>
+            <input
+              type="text"
+              placeholder="search by name"
+              onChange={(e) => setSearchProduct(e.target.value)}
+            ></input>
           </div>
           <div>
             <table>

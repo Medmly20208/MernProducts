@@ -2,7 +2,11 @@ const productModel = require("../models/products.model");
 const catchAsync = require("../utils/catchAsync");
 // get products by user Id
 exports.getAllproductByUserId = catchAsync(async (req, res, next) => {
-  const products = await productModel.find({ userId: req.params.userId });
+  //{ "authors": { "$regex": "Alex", "$options": "i" } }
+  const products = await productModel.find({
+    userId: req.params.userId,
+    name: { $regex: req.query.name, $options: "i" },
+  });
 
   return res.status(200).json({
     status: "success",

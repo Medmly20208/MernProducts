@@ -13,7 +13,7 @@ export const signup = (data) => {
 };
 
 export const getProductsByUserId = (data) => {
-  return Client.get(`/products/${data.userId}`);
+  return Client.get(`/products/${data.userId}?name=${data.name}`);
 };
 
 export const postProduct = (data) => {
