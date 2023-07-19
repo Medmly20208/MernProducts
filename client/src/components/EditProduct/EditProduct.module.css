@@ -29,3 +29,9 @@
   outline: none;
   border: 1px solid black;
 }
+
+@media (max-width: 500px) {
+  .sub_container {
+    width: 80vw;
+  }
+}

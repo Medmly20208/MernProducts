@@ -10,9 +10,11 @@ const NewProduct = ({ onClose, toggleData }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(1);
   const [quantity, setQuantity] = useState(1);
+  const [Isloading, setIsLoading] = useState(false);
 
   const addProductHandler = (event) => {
     event.preventDefault();
+    setIsLoading(true);
     postProduct({
       userId: JSON.parse(localStorage.getItem("userData")).id,
       name,
@@ -21,6 +23,7 @@ const NewProduct = ({ onClose, toggleData }) => {
     })
       .then((res) => {
         //console.log(res);
+        setIsLoading(false);
         toggleData();
         onClose();
       })
@@ -34,7 +37,10 @@ const NewProduct = ({ onClose, toggleData }) => {
       style={{ backgroundColor: "white" }}
       className={styles["sub_container"]}
     >
-      <form onSubmit={addProductHandler} className={styles["form_container"]}>
+      <form
+        onSubmit={Isloading ? () => {} : addProductHandler}
+        className={styles["form_container"]}
+      >
         <div>
           <label>Name:</label>
           <br></br>
@@ -58,7 +64,15 @@ const NewProduct = ({ onClose, toggleData }) => {
             onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
-        <button className="btn">Add product</button>
+        <button
+          style={{
+            background: Isloading ? "gray" : "",
+            border: Isloading ? "gray" : "",
+          }}
+          className="btn"
+        >
+          {Isloading ? "loading..." : "Add product"}
+        </button>
       </form>
     </div>
   );

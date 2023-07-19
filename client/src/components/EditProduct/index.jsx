@@ -10,9 +10,11 @@ const EditProduct = ({ productId, onClose, product, toggleData }) => {
   const [name, setName] = useState(product.name);
   const [price, setPrice] = useState(product.price);
   const [quantity, setQuantity] = useState(product.quantity);
+  const [isLoading, setIsLoading] = useState(false);
 
   const EditProduct = (event) => {
     event.preventDefault();
+    setIsLoading(true);
     updateProductById({
       productId,
       name,
@@ -21,6 +23,7 @@ const EditProduct = ({ productId, onClose, product, toggleData }) => {
     })
       .then((res) => {
         //console.log(res);
+        setIsLoading(false);
         toggleData();
         onClose();
       })
@@ -34,7 +37,10 @@ const EditProduct = ({ productId, onClose, product, toggleData }) => {
       style={{ backgroundColor: "white" }}
       className={styles["sub_container"]}
     >
-      <form onSubmit={EditProduct} className={styles["form_container"]}>
+      <form
+        onSubmit={isLoading ? () => {} : EditProduct}
+        className={styles["form_container"]}
+      >
         <div>
           <label>Name:</label>
           <br></br>
@@ -64,7 +70,15 @@ const EditProduct = ({ productId, onClose, product, toggleData }) => {
             onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
-        <button className="btn">Edit product</button>
+        <button
+          style={{
+            background: isLoading ? "gray" : "",
+            border: isLoading ? "gray" : "",
+          }}
+          className="btn"
+        >
+          {isLoading ? "laoding" : "Edit Product"}
+        </button>
       </form>
     </div>
   );

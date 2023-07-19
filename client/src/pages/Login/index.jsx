@@ -37,6 +37,15 @@ const index = () => {
         <form onSubmit={handleLogin} className={styles["form_container"]}>
           {error && <p className="error">*{error}</p>}
           <div>
+            <p style={{ margin: "5px" }}>
+              <span style={{ fontWeight: "bold" }}>Email:</span>
+              mly2002@gmail.com
+            </p>
+            <p style={{ margin: "5px" }}>
+              <span style={{ fontWeight: "bold" }}>Password:</span>test123ml$KDE
+            </p>
+          </div>
+          <div>
             <label>Email:</label>
             <br></br>
             <input
